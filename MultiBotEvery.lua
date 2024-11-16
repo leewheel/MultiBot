@@ -43,7 +43,11 @@ MultiBot.addEvery = function(pFrame, pCombat, pNormal)
 			pButton.setDisable()
 		else
 			local tUnits = MultiBot.frames["MultiBar"].frames["Units"]
-			for key, value in pairs(MultiBot.index.actives) do tUnits.frames[value].getButton("Inventory").setDisable() end
+			for key, value in pairs(MultiBot.index.actives) do 
+				if(tUnits.buttons[value].name ~= UnitName("player")) then
+					tUnits.frames[value].getButton("Inventory").setDisable()
+				end
+			end
 			
 			pButton.setEnable()
 			MultiBot.inventory.name = pButton.getName()
@@ -59,7 +63,11 @@ MultiBot.addEvery = function(pFrame, pCombat, pNormal)
 			pButton.setDisable()
 		else
 			local tUnits = MultiBot.frames["MultiBar"].frames["Units"]
-			for key, value in pairs(MultiBot.index.actives) do tUnits.frames[value].getButton("Spellbook").setDisable() end
+			for key, value in pairs(MultiBot.index.actives) do
+				if(tUnits.buttons[value].name ~= UnitName("player")) then
+					tUnits.frames[value].getButton("Spellbook").setDisable()
+				end
+			end
 			
 			pButton.setEnable()
 			MultiBot.spellbook.name = pButton.getName()
@@ -73,14 +81,20 @@ MultiBot.addEvery = function(pFrame, pCombat, pNormal)
 		if(pButton.state) then
 			pButton.setDisable()
 			MultiBot.talent:Hide()
-			MultiBot.talent.doClear()
 		elseif(UnitLevel(MultiBot.toUnit(pButton.getName())) < 10) then
 			SendChatMessage(MultiBot.info.talent.Level, "SAY")
 		elseif(CheckInteractDistance(MultiBot.toUnit(pButton.getName()), 1) == nil) then
 			SendChatMessage(MultiBot.info.talent.OutOfRange, "SAY")
 		else
+			MultiBot.talent:Hide()
+			MultiBot.talent.doClear()
+			
 			local tUnits = MultiBot.frames["MultiBar"].frames["Units"]
-			for key, value in pairs(MultiBot.index.actives) do tUnits.frames[value].getButton("Talent").setDisable() end
+			for key, value in pairs(MultiBot.index.actives) do
+				if(tUnits.buttons[value].name ~= UnitName("player")) then
+					tUnits.frames[value].getButton("Talent").setDisable()
+				end
+			end
 			
 			InspectUnit(MultiBot.toUnit(pButton.getName()))
 			pButton.setEnable()

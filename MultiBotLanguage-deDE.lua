@@ -5,6 +5,12 @@ MultiBot.info.command =
 MultiBot.info.target =
 "Ich habe kein Ziel.";
 
+MultiBot.info.classes =
+"Die Klassen stimmen nicht überein.";
+
+MultiBot.info.levels =
+"Die Level stimmen nicht überein.";
+
 MultiBot.info.spell =
 "Ich konnte den Zauber nicht identifizieren.";
 
@@ -74,9 +80,23 @@ MultiBot.info.combination =
 --MultiBot.info.language =
 --"Ich muss zuerst den Language-Selector aktivieren.";
 
+MultiBot.info.rights =
+"Ich habe keine GameMaster-Rechte.";
+
 MultiBot.info.reward =
 "Wähle die Belohnungen";
 
+MultiBot.info.shorts.bag =
+"Bag";
+
+MultiBot.info.shorts.dur =
+"Dur";
+
+MultiBot.info.shorts.xp =
+"XP";
+
+MultiBot.info.shorts.mp =
+"MP";
 
 -- INFO:TALENT --
 
@@ -88,6 +108,9 @@ MultiBot.info.talent.OutOfRange =
 
 MultiBot.info.talent.Apply = 
 "Ausführen";
+
+MultiBot.info.talent.Copy = 
+"Kopieren";
 
 MultiBot.info.talent.Title =
 "Talente von NAME";
@@ -797,7 +820,7 @@ MultiBot.tips.main.master =
 "Die Ausführreihenfolge zeigt die Empfänger des Befehls.|r\n\n"..
 "|cffff0000Linksklicken um die Optionen ein- oder auszublenden|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r\n\n"..
-"|cffff0000Rechtsklicken um MultiBot zu schließen|r\n"..
+"|cffff0000Rechtsklicken und halten um MultiBar zu verschieben|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r";
 
 MultiBot.tips.main.coords =
@@ -805,6 +828,29 @@ MultiBot.tips.main.coords =
 "Setzt die Koordinaten der folgenden Erweiterungen zurück:\n"..
 "MultiBar, Inventar, Zauberbuch, Itemus, Iconos und Reward-Selector|r\n\n"..
 "|cffff0000Linksklicken um die Koordinaten zurückzusetzen|r\n"..
+"|cff999999(Ausführreihenfolge: System)|r";
+
+MultiBot.tips.main.masters =
+"GameMaster-Switch\n|cffffffff"..
+"Dieser Schalter aktiviert oder deaktiviert die GameMaster-Control.\n"..
+"Man benötigt GameMaster-Rechte um die GameMaster-Control zu aktivieren.|r\n\n"..
+"|cffff0000Linksklicken um die GameMaster-Control ein- oder auszuschalten|r\n"..
+"|cff999999(Ausführreihenfolge: System)|r";
+
+MultiBot.tips.main.creator =
+"Creator-Switch\n|cffffffff"..
+"Dieser Schalter aktiviert oder deaktiviert die Creator-Control.|r\n\n"..
+"|cffff0000Linksklicken um die Creator-Control ein- oder auszuschalten|r\n"..
+"|cff999999(Ausführreihenfolge: System)|r";
+
+MultiBot.tips.main.beast =
+"Beastmaster-Switch\n|cffffffff"..
+"Dieser Schalter aktiviert oder deaktiviert die Beastmaster-Control.\n"..
+"Die Beastmaster-Control ist für Mod-NPC-Beastmaster des Azerothcore.\n"..
+"Mod-NPC-Beastmaster erlaubt es jedem Character eine Bestie wie Jäger zu haben.\n"..
+"Dein Character kann die notwendigen Zauber bei 'White Fang' erlernen.\n"..
+"Der GameMaster muss 'White Fang' in der Spielwelt platzieren.\n"..
+"|cffff0000Linksklicken um die Beastmaster-Control ein- oder auszuschalten|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r";
 
 --[[
@@ -822,7 +868,7 @@ MultiBot.tips.main.lang.master =
 MultiBot.tips.main.release =
 "Auto-Release\n|cffffffff"..
 "Diese Erweiterung erkennt wenn ein Bot stirbt.\n"..
-"Tode Bots werden automatisch freigelassen und herbeigerufen.\n"..
+"Tote Bots werden automatisch freigelassen und herbeigerufen.\n"..
 "Dadurch werden die Bots innerhalb von Sekunden wiederbelebt.|r\n\n"..
 "|cffff0000Linksklicken um Auto-Release ein- oder auszuschalten|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r";
@@ -870,7 +916,7 @@ MultiBot.tips.game.master =
 "Die Ausführreihenfolge zeigt die Empfänger des Befehls.|r\n\n"..
 "|cffff0000Linksklicken um die Optionen ein- oder auszublenden|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r\n\n"..
-"|cffff0000Rechtsklicken und halten um MultiBar zu verschieben|r\n"..
+"|cffff0000Rechtsklicken um MultiBot zu schließen|r\n"..
 "|cff999999(Ausführreihenfolge: System)|r";
 
 MultiBot.tips.game.necronet =
@@ -990,6 +1036,14 @@ MultiBot.tips.inventory.use =
 "|cffff0000Linksklicken um Benutzen zu aktivieren|r\n"..
 "|cff999999(Ausführreihenfolge: Bot)|r";
 
+MultiBot.tips.inventory.trade =
+"Items tauschen|cffffffff\n"..
+"Diese Schaltfläche aktiviert den Tausch-Modus des Inventars.\n"..
+"Den Inspekt-Frame muss man manuell schließen.\n"..
+"Es gibt kein LUA-Befehl dafür.|r\n\n"..
+"|cffff0000Linksklicken um Tasuchen zu aktivieren|r\n"..
+"|cff999999(Ausführreihenfolge: Bot)|r";
+
 MultiBot.tips.inventory.drop =
 "Items zerstören|cffffffff\n"..
 "Diese Schaltfläche aktiviert den Zerstör-Modus des Inventars.\n"..
@@ -999,6 +1053,13 @@ MultiBot.tips.inventory.drop =
 "- den Ruhestein|r\n\n"..
 "|cffff0000Linktsklicken um Zerstören zu aktivieren|r\n"..
 "|cff999999(Ausführreihenfolge: Bot)|r";
+
+MultiBot.tips.inventory.open =
+"Items öffnen|cffffffff\n"..
+"Diese Schaltfläche öffnet die erste auffindbare Beute-Tasche im Inventar.\n"..
+"Der Inhalt wird automatisch in das Inventar gelegt.|r\n\n"..
+"|cffff0000Linksklicken um eine Beute-Tasche zu öffnen|r\n"..
+"|cff999999(Ausführreihenfolge-Order: Bot)|r";
 
 -- ITEMUS:LEVEL --
 

@@ -8,9 +8,9 @@ MultiBot.addItem = function(pFrame, pInfo)
 	local tX = (pFrame.index%8) * 38
 	local tY = math.floor(pFrame.index/8) * -37.1
 	
-	tName = MultiBot.IF(tName == nil, string.sub(tInfo[4], 3, string.len(tInfo[4]) - 1), tName)
-	tLink = MultiBot.IF(tLink == nil, "|" .. tInfo[2] .. "|" .. tInfo[3] .. "|" .. tInfo[4] .. "|h|r", tLink)
-	tRare = MultiBot.IF(tRare == nil, 4, tRare) -- for Security
+	if(tName == nil) then tName = string.sub(tInfo[4], 3, string.len(tInfo[4]) - 1) end
+	if(tLink == nil) then tLink = "|" .. tInfo[2] .. "|" .. tInfo[3] .. "|" .. tInfo[4] .. "|h|r" end
+	if(tRare == nil) then tRare = 4 end -- for Security
 	
 	local tButton = pFrame.addButton(tName, tX, tY, tIcon, tLink)
 	
@@ -39,10 +39,8 @@ MultiBot.addItem = function(pFrame, pInfo)
 			return
 		end
 		
-		if(tAction == "e" or tAction == "u") then
+		if(tAction == "e" or tAction == "u" or tAction == "give") then
 			SendChatMessage(tAction .. " " .. pButton.tip, "WHISPER", nil, tName)
-			MultiBot.frames["MultiBar"].frames["Units"].buttons[tName].waitFor = "INVENTORY"
-			SendChatMessage("items", "WHISPER", nil, tName)
 			return
 		end
 		

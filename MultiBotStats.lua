@@ -32,6 +32,7 @@ MultiBot.addStats = function(pFrame, pIndex, pX, pY, pSize, pWidth, pHeight)
 	tFrame.setStats = function(pName, pLevel, pStats, oPlayer)
 		local tFrame = MultiBot.stats.frames[MultiBot.toUnit(pName)]
 		local tAddon = tFrame.frames["Addon"]
+		local tChina = GetLocale() == "zhCN"
 		
 		if(oPlayer ~= nil and oPlayer == true) then
 			local tStats = MultiBot.doSplit(pStats, ", ")
@@ -43,9 +44,9 @@ MultiBot.addStats = function(pFrame, pIndex, pX, pY, pSize, pWidth, pHeight)
 			tFrame.texts["Values"]:SetText("Player")
 			
 			if(pLevel == 80) then
-				tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tMana) .. "%\nMP")
+				tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tMana) .. "%\n" .. MultiBot.info.shorts.mp)
 			else
-				tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tXP) .. "%\nXP")
+				tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tXP) .. "%\n" .. MultiBot.info.shorts.xp)
 			end
 			
 			tFrame:Show()
@@ -54,7 +55,7 @@ MultiBot.addStats = function(pFrame, pIndex, pX, pY, pSize, pWidth, pHeight)
 		
 		local tStats = MultiBot.doSplit(pStats, ", ")
 		local tMoney = "|cffffdd55" .. tStats[1] .. "|r, "
-		local tBag = tStats[2]
+		local tBag = MultiBot.IF(tChina, MultiBot.doReplace(tStats[2], "Bag", MultiBot.info.shorts.bag), tStats[2])
 		
 		tFrame.texts["Name"]:SetText(pName)
 		tFrame.texts["Level"]:SetText(pLevel)
@@ -65,10 +66,10 @@ MultiBot.addStats = function(pFrame, pIndex, pX, pY, pSize, pWidth, pHeight)
 			local tQuality = tonumber(string.sub(tDur[1], 1, string.len(tDur[1]) - 1))
 			local tRepair = tonumber(string.sub(tDur[2], 2, string.len(tDur[2]) - 1))
 			if(tQuality == 0 and tRepair == 0) then tQuality = 100 end
-			tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tQuality) .. "%\nDur")
+			tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tQuality) .. "%\n" .. MultiBot.info.shorts.dur)
 		else
 			local tXP = tonumber(string.sub(MultiBot.doSplit(tStats[4], "|")[2], 10))
-			tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tXP) .. "%\nXP")
+			tAddon.texts["Percent"]:SetText(tFrame.setProgress(tFrame, tXP) .. "%\n" .. MultiBot.info.shorts.xp)
 		end
 		
 		tFrame:Show()

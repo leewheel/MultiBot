@@ -83,6 +83,10 @@ MultiBot:SetScript("OnEvent", function()
 		MultiBotSave["NecroNet"] = MultiBot.IF(MultiBot.necronet.state, "true", "false")
 		MultiBotSave["Reward"] = MultiBot.IF(MultiBot.reward.state, "true", "false")
 		
+		MultiBotSave["Masters"] = MultiBot.IF(MultiBot.frames["MultiBar"].frames["Main"].buttons["Masters"].state, "true", "false")
+		MultiBotSave["Creator"] = MultiBot.IF(MultiBot.frames["MultiBar"].frames["Main"].buttons["Creator"].state, "true", "false")
+		MultiBotSave["Beast"] = MultiBot.IF(MultiBot.frames["MultiBar"].frames["Main"].buttons["Beast"].state, "true", "false")
+		
 		return
 	end
 	
@@ -235,12 +239,42 @@ MultiBot:SetScript("OnEvent", function()
 			tButton.doLeft(tButton)
 		end
 		
+		if(MultiBotSave["Masters"] ~= nil) then
+			local tButton = MultiBot.frames["MultiBar"].frames["Main"].buttons["Masters"]
+			
+			if(MultiBotSave["Masters"] == "true") then
+				MultiBot.GM = true
+				tButton.setDisable()
+				tButton.doLeft(tButton)
+			end
+		end
+		
+		if(MultiBotSave["Creator"] ~= nil) then
+			local tButton = MultiBot.frames["MultiBar"].frames["Main"].buttons["Creator"]
+			
+			if(MultiBotSave["Creator"] == "true") then
+				tButton.setDisable()
+				tButton.doLeft(tButton)
+			end
+		end
+		
+		if(MultiBotSave["Beast"] ~= nil) then
+			local tButton = MultiBot.frames["MultiBar"].frames["Main"].buttons["Beast"]
+			
+			if(MultiBotSave["Beast"] == "true") then
+				tButton.setDisable()
+				tButton.doLeft(tButton)
+			end
+		end
+		
 		return
 	end
 	
 	-- PLAYER:ENTERING --
 	
 	if(event == "PLAYER_ENTERING_WORLD") then
+		SendChatMessage(".account", "SAY")
+		
 		if(MultiBot.init == nil) then
 			SendChatMessage(".playerbot bot list", "SAY")
 			MultiBot.init = true
@@ -253,8 +287,35 @@ MultiBot:SetScript("OnEvent", function()
 	-- CHAT:SYSTEM --
 	
 	if(event == "CHAT_MSG_SYSTEM") then
-		if(MultiBot.auto.release and MultiBot.isInside(arg1, "ist tot", "has dies")) then
-			SendChatMessage("release", "WHISPER", nil, MultiBot.doSplit(arg1, " ")[1])
+		if(MultiBot.isInside(arg1, "Accountlevel", "account level", "等级")) then
+			local tLevel = tonumber(MultiBot.doSplit(arg1, ": ")[2])
+			if(tLevel ~= nil) then MultiBot.GM = tLevel > 1 end
+		end
+		
+		if(MultiBot.isInside(arg1, "Possible strategies")) then
+			local tStrategies = MultiBot.doSplit(arg1, ", ")
+			SendChatMessage("=== STRATEGIES ===", "SAY")
+			for i = 1, table.getn(tStrategies) do SendChatMessage(i .. " : " .. tStrategies[i], "SAY") end
+			return
+		end
+		
+		if(MultiBot.isInside(arg1, "Whisper any of")) then
+			local tCommands = MultiBot.doSplit(arg1, ", ")
+			SendChatMessage("=== WHISPER-COMMANDS ===", "SAY")
+			for i = 1, table.getn(tCommands) do SendChatMessage(i .. " : " .. tCommands[i], "SAY") end
+			return
+		end
+		
+		if(MultiBot.auto.release == true) then
+			if(MultiBot.isInside(arg1, "已经死亡")) then
+				SendChatMessage("release", "WHISPER", nil, MultiBot.doReplace(arg1, "已经死亡。", ""))
+				return
+			end
+			
+			if(MultiBot.isInside(arg1, "ist tot", "has dies", "has died")) then
+				SendChatMessage("release", "WHISPER", nil, MultiBot.doSplit(arg1, " ")[1])
+				return
+			end
 		end
 		
 		if(string.sub(arg1, 1, 12) == "Bot roster: ") then
@@ -275,6 +336,7 @@ MultiBot:SetScript("OnEvent", function()
 			local tTable = MultiBot.doSplit(string.sub(arg1, 13), ", ")
 			
 			for key, value in pairs(tTable) do
+				if(value == "") then break end
 				local tBot = MultiBot.doSplit(value, " ")
 				local tName = string.sub(tBot[1], 2)
 				local tClass = MultiBot.toClass(tBot[2])
@@ -474,9 +536,17 @@ MultiBot:SetScript("OnEvent", function()
 	-- CHAT:WHISPER --
 	
 	if(event == "CHAT_MSG_WHISPER") then
-		if(MultiBot.auto.release and arg1 == "Meet me at the graveyard") then
-			SendChatMessage("summon", "WHISPER", nil, arg2)
-			return
+		if(MultiBot.auto.release == true) then
+			-- Graveyard not ready to talk Bot in the chinese Version --
+			if(arg1 == "在墓地见我") then
+				MultiBot.frames["MultiBar"].frames["Units"].buttons[arg2].waitFor = "你好"
+				return
+			end
+			
+			if(arg1 == "Meet me at the graveyard") then
+				SendChatMessage("summon", "WHISPER", nil, arg2)
+				return
+			end
 		end
 		
 		if(MultiBot.isInside(arg1, "StatsOfPlayer")) then
@@ -494,7 +564,7 @@ MultiBot:SetScript("OnEvent", function()
 		
 		local tButton = MultiBot.frames["MultiBar"].frames["Units"].buttons[arg2]
 		
-		if(MultiBot.isInside(arg1, "Hello") and tButton == nil) then
+		if(MultiBot.isInside(arg1, "Hello", "你好") and tButton == nil) then
 			local tUnit = MultiBot.toUnit(arg2)
 			local tLocClass, tClass = UnitClass(tUnit)
 			local tLevel = UnitLevel(tUnit)
@@ -517,7 +587,7 @@ MultiBot:SetScript("OnEvent", function()
 			end
 		elseif(tButton == nil) then return end
 		
-		if(MultiBot.isInside(arg1, "Hello") and tButton.class == "Unknown" and tButton.roster == "friends") then
+		if(MultiBot.isInside(arg1, "Hello", "你好") and tButton.class == "Unknown" and tButton.roster == "friends") then
 			local tName = ""
 			local tLevel = ""
 			local tClass = ""
@@ -550,7 +620,7 @@ MultiBot:SetScript("OnEvent", function()
 			tButton.class = tClass
 		end
 		
-		if(MultiBot.isInside(arg1, "Hello")) then
+		if(MultiBot.isInside(arg1, "Hello", "你好")) then
 			tButton.waitFor = "CO"
 			SendChatMessage(MultiBot.doReplace(MultiBot.info.combat, "NAME", arg2), "SAY")
 			SendChatMessage("co ?", "WHISPER", nil, arg2)
@@ -558,9 +628,18 @@ MultiBot:SetScript("OnEvent", function()
 			return
 		end
 		
-		if(arg1 == "Goodbye!") then
+		if(MultiBot.isInside(arg1, "Goodbye", "再见")) then
 			--MultiBot.doRaid()
 			return
+		end
+		
+		if(MultiBot.auto.release == true) then
+			-- Graveyard ready to talk Bot in the chinese Version --
+			if(tButton.waitFor == "你好" and arg1 == "你好") then
+				SendChatMessage("summon", "WHISPER", nil, arg2)
+				tButton.waitFor = ""
+				return
+			end
 		end
 		
 		if(tButton.waitFor == "NC" and MultiBot.isInside(arg1, "Strategies: ")) then
@@ -575,8 +654,10 @@ MultiBot:SetScript("OnEvent", function()
 			MultiBot.addEvery(tFrame, tButton.combat, tButton.normal)
 			
 			if(MultiBot.index.classes.actives[tButton.class] == nil) then MultiBot.index.classes.actives[tButton.class] = {} end
-			table.insert(MultiBot.index.classes.actives[tButton.class], tButton.name)
-			table.insert(MultiBot.index.actives, tButton.name)
+			if(MultiBot.isActive(tButton.name) == false) then
+				table.insert(MultiBot.index.classes.actives[tButton.class], tButton.name)
+				table.insert(MultiBot.index.actives, tButton.name)
+			end
 			
 			tButton.setEnable()
 			return
@@ -599,7 +680,7 @@ MultiBot:SetScript("OnEvent", function()
 		
 		-- Inventory --
 		
-		if(tButton.waitFor == "INVENTORY" and MultiBot.isInside(arg1, "Inventory")) then
+		if(tButton.waitFor == "INVENTORY" and MultiBot.isInside(arg1, "Inventory", "背包")) then
 			local tItems = MultiBot.inventory.frames["Items"]
 			for key, value in pairs(tItems.buttons) do value:Hide() end
 			table.wipe(tItems.buttons)
@@ -611,7 +692,7 @@ MultiBot:SetScript("OnEvent", function()
 			return
 		end
 		
-		if(tButton.waitFor == "ITEM" and MultiBot.isInside(arg1, "Bag", "Dur", "XP")) then
+		if(tButton.waitFor == "ITEM" and MultiBot.isInside(arg1, "Bag,", "Dur", "XP", "背包", "耐久度", "经验值")) then
 			MultiBot.inventory:Show()
 			tButton.waitFor = ""
 			InspectUnit(arg2)
@@ -619,6 +700,7 @@ MultiBot:SetScript("OnEvent", function()
 		end
 		
 		if(tButton.waitFor == "ITEM") then
+			if(string.sub(arg1, 1, 3) == "---") then return end
 			MultiBot.addItem(MultiBot.inventory.frames["Items"], arg1)
 			return
 		end
@@ -639,7 +721,7 @@ MultiBot:SetScript("OnEvent", function()
 			return
 		end
 		
-		if(tButton.waitFor == "SPELL" and MultiBot.isInside(arg1, "Bag", "Dur", "XP")) then
+		if(tButton.waitFor == "SPELL" and MultiBot.isInside(arg1, "Bag,", "Dur", "XP", "背包", "耐久度", "经验值")) then
 			local tOverlay = MultiBot.spellbook.frames["Overlay"]
 			local tSpellbook = MultiBot.spellbook
 			tSpellbook.now = 1
@@ -658,13 +740,72 @@ MultiBot:SetScript("OnEvent", function()
 			return
 		end
 		
+		-- EQUIPPING --
+		
+		if(MultiBot.inventory:IsVisible()) then
+			if(MultiBot.isInside(arg1, "装备", "使用", "吃", "喝", "盛宴", "摧毁")) then
+				tButton.waitFor = "INVENTORY"
+				SendChatMessage("items", "WHISPER", nil, tButton.name)
+				return
+			end
+			
+			if(MultiBot.isInside(string.lower(arg1), "equipping", "using", "eating", "drinking", "feasting", "destroyed")) then
+				tButton.waitFor = "INVENTORY"
+				SendChatMessage("items", "WHISPER", nil, tButton.name)
+				return
+			end
+			
+			if(MultiBot.inventory:IsVisible() and MultiBot.isInside(string.lower(arg1), "opened")) then
+				tButton.waitFor = "LOOT"
+				return
+			end
+		end
+		
+		return
+	end
+	
+	if(event == "CHAT_MSG_LOOT") then
+		if(MultiBot.inventory:IsVisible()) then
+			local tButton = nil
+			
+			if(MultiBot.isInside(arg1, "获得了物品")) then
+				local tName = MultiBot.doReplace(MultiBot.doSplit(arg1, ":")[1], "获得了物品", "")
+				tButton = MultiBot.frames["MultiBar"].frames["Units"].buttons[tName]
+			end
+			
+			if(MultiBot.isInside(string.lower(arg1), "beute", "receives")) then
+				local tName = MultiBot.doSplit(arg1, " ")[1]
+				tButton = MultiBot.frames["MultiBar"].frames["Units"].buttons[tName]
+			end
+			
+			if(tButton ~= nil and tButton.waitFor == "LOOT" and tButton ~= nil) then
+				tButton.waitFor = "INVENTORY"
+				SendChatMessage("items", "WHISPER", nil, tButton.name)
+				return
+			end
+		end
+		
+		return
+	end
+	
+	if(event == "TRADE_CLOSED") then
+		if(MultiBot.inventory:IsVisible()) then
+			MultiBot.frames["MultiBar"].frames["Units"].buttons[MultiBot.inventory.name].waitFor = "INVENTORY"
+			SendChatMessage("items", "WHISPER", nil, MultiBot.inventory.name)
+			return
+		end
+		
 		return
 	end
 	
 	-- QUEST:COMPLETE --
 	
 	if(event == "QUEST_COMPLETE") then
-		MultiBot.setRewards()
+		if(MultiBot.reward.state) then
+			MultiBot.setRewards()
+			return
+		end
+		
 		return
 	end
 	

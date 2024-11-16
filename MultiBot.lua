@@ -7,7 +7,9 @@ MultiBot:RegisterEvent("PLAYER_LOGOUT")
 MultiBot:RegisterEvent("CHAT_MSG_WHISPER")
 MultiBot:RegisterEvent("CHAT_MSG_SYSTEM")
 MultiBot:RegisterEvent("CHAT_MSG_ADDON")
+MultiBot:RegisterEvent("CHAT_MSG_LOOT")
 MultiBot:RegisterEvent("QUEST_COMPLETE")
+MultiBot:RegisterEvent("TRADE_CLOSED")
 MultiBot:SetPoint("BOTTOMRIGHT", 0, 0)
 MultiBot:SetSize(1, 1)
 MultiBot:Show()
@@ -49,11 +51,18 @@ MultiBot.timer.invite.interval = 5
 -- INFO --
 
 MultiBot.info = {}
+MultiBot.info.shorts = {}
 MultiBot.info.command =
 "Command not found.";
 
 MultiBot.info.target =
 "I dont have a Target.";
+
+MultiBot.info.classes =
+"The Classes do not match.";
+
+MultiBot.info.levels =
+"The Levels do not match.";
 
 MultiBot.info.spell =
 "I couldnt identify the Spell.";
@@ -124,8 +133,23 @@ MultiBot.info.combination =
 --MultiBot.info.language =
 --"I need to activate the Language-Selector first.";
 
+MultiBot.info.rights =
+"I have not the GameMaster-Rights.";
+
 MultiBot.info.reward =
 "Select the Rewards";
+
+MultiBot.info.shorts.bag =
+"Bag";
+
+MultiBot.info.shorts.dur =
+"Dur";
+
+MultiBot.info.shorts.xp =
+"XP";
+
+MultiBot.info.shorts.mp =
+"MP";
 
 -- INFO:TALENT --
 
@@ -139,6 +163,9 @@ MultiBot.info.talent.OutOfRange =
 
 MultiBot.info.talent.Apply = 
 "Apply";
+
+MultiBot.info.talent.Copy = 
+"Copy";
 
 MultiBot.info.talent.Title =
 "Talents from NAME";
@@ -861,7 +888,7 @@ MultiBot.tips.main.master =
 "The Execution-Order shows the Receiver for Commandos.|r\n\n"..
 "|cffff0000Left-Click to show or hide the Options|r\n"..
 "|cff999999(Execution-Order: System)|r\n\n"..
-"|cffff0000Right-Click to close MultiBot|r\n"..
+"|cffff0000Right-Click to drag and move MultiBot|r\n"..
 "|cff999999(Execution-Order: System)|r";
 
 MultiBot.tips.main.coords =
@@ -869,6 +896,29 @@ MultiBot.tips.main.coords =
 "Reset the Coordinates of the Features:\n"..
 "MultiBar, Inventory, Spellbook, Itemus, Iconos and Reward-Selector|r\n\n"..
 "|cffff0000Left-Click to reset Coordinates|r\n"..
+"|cff999999(Execution-Order: System)|r";
+
+MultiBot.tips.main.masters =
+"GameMaster-Switch\n|cffffffff"..
+"This Switch will enable or disable the GameMaster-Control.\n"..
+"You will need GameMaster-Rights to enable the GameMaster-Control|r\n\n"..
+"|cffff0000Left-Click to enable or disable the GameMaster-Control|r\n"..
+"|cff999999(Execution-Order: System)|r";
+
+MultiBot.tips.main.creator =
+"Creator-Switch\n|cffffffff"..
+"This Switch will enable or disable the Creator-Control.|r\n\n"..
+"|cffff0000Left-Click to enable or disable the Creator-Control|r\n"..
+"|cff999999(Execution-Order: System)|r";
+
+MultiBot.tips.main.beast =
+"Beastmaster-Switch\n|cffffffff"..
+"This Switch will enable or disable the Beastmaster-Control.\n"..
+"The Beastmaster-Control is for the Mod-NPC-Beastmaster of the Azerothcore.\n"..
+"Mod-NPC-Beastmaster allows every Character to have a Pet like Hunters.\n"..
+"Your Charaters can learn the nessasary Spells from White Fang.\n"..
+"White Fang must be placed into the World by the GameMaster.|r\n\n"..
+"|cffff0000Left-Click to enable or disable the Beastmaster-Control|r\n"..
 "|cff999999(Execution-Order: System)|r";
 
 --[[
@@ -953,7 +1003,7 @@ MultiBot.tips.game.master =
 "The Execution-Order shows the Receiver for Commandos.|r\n\n"..
 "|cffff0000Left-Click to show or hide the Options|r\n"..
 "|cff999999(Execution-Order: System)|r\n\n"..
-"|cffff0000Right-Click to drag and move MultiBot|r\n"..
+"|cffff0000Right-Click to close MultiBot|r\n"..
 "|cff999999(Execution-Order: System)|r";
 
 MultiBot.tips.game.necronet =
@@ -1078,6 +1128,14 @@ MultiBot.tips.inventory.use =
 "|cffff0000Left-Click to use a Item|r\n"..
 "|cff999999(Execution-Order: Bot)|r";
 
+MultiBot.tips.inventory.trade =
+"Trade-Items|cffffffff\n"..
+"It enables the Trade-Mode of the Inventory.\n"..
+"The Inspect-Frame must be closed manually.\n"..
+"There is no LUA-Command for this.|r\n\n"..
+"|cffff0000Left-Click to trade a Item|r\n"..
+"|cff999999(Execution-Order: Bot)|r";
+
 MultiBot.tips.inventory.drop =
 "Drop-Items|cffffffff\n"..
 "It enables the Drop-Mode of the Inventory.\n"..
@@ -1086,6 +1144,13 @@ MultiBot.tips.inventory.drop =
 "- every Item with 'Key' in its Name\n"..
 "- the Hearthstone|r\n\n"..
 "|cffff0000Left-Click to drop a Item|r\n"..
+"|cff999999(Execution-Order: Bot)|r";
+
+MultiBot.tips.inventory.open =
+"Open-Items|cffffffff\n"..
+"This Button will open every first findable Loot-Bag in your Inventory.\n"..
+"The Content will be put automatically into the Inventory.|r\n\n"..
+"|cffff0000Left-Click to open a Loot-Bag|r\n"..
 "|cff999999(Execution-Order: Bot)|r";
 
 -- ITEMUS:LEVEL --
@@ -2420,3 +2485,5 @@ MultiBot.tips.every.talent =
 "It opens with a time delay while the system loads the talent values.|r\n\n",
 "|cffff0000Left-Click to open or close the Talents|r\n"..
 "|cff999999(Execution-Order: Bot)|r";
+
+MultiBot.GM = false
