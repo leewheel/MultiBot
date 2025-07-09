@@ -11,7 +11,7 @@ local tLeft = tMultiBar.addFrame("Left", -76, 2, 32)
 
 tLeft.addButton("Tanker", -170, 0, "ability_warrior_shieldbash", MultiBot.tips.tanker.master)
 .doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@tank do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("坦克杀了他") end
 end
 
 -- ATTACK --
@@ -21,7 +21,7 @@ tButton.doRight = function(pButton)
 	MultiBot.ShowHideSwitch(pButton.parent.frames["Attack"])
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("打他") end
 end
 
 local tAttack = tLeft.addFrame("Attack", -138, 34)
@@ -29,50 +29,50 @@ tAttack:Hide()
 
 local tButton = tAttack.addButton("Attack", 0, 0, "Interface\\AddOns\\MultiBot\\Icons\\attack.blp", MultiBot.tips.attack.attack)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("打他") end
 end
 
 local tButton = tAttack.addButton("Ranged", 0, 30, "Interface\\AddOns\\MultiBot\\Icons\\attack_ranged.blp", MultiBot.tips.attack.ranged)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "@ranged do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "远程打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@ranged do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("远程打他") end
 end
 
 local tButton = tAttack.addButton("Melee", 0, 60, "Interface\\AddOns\\MultiBot\\Icons\\attack_melee.blp", MultiBot.tips.attack.melee)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "@melee do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "近战打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@melee do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("近战打他") end
 end
 
 local tButton = tAttack.addButton("Healer", 0, 90, "Interface\\AddOns\\MultiBot\\Icons\\attack_healer.blp", MultiBot.tips.attack.healer)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "@healer do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "治疗打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@healer do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("治疗打他") end
 end
 
 local tButton = tAttack.addButton("Dps", 0, 120, "Interface\\AddOns\\MultiBot\\Icons\\attack_dps.blp", MultiBot.tips.attack.dps)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "@dps do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "DPS打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@dps do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("DPS打他") end
 end
 
 local tButton = tAttack.addButton("Tank", 0, 150, "Interface\\AddOns\\MultiBot\\Icons\\attack_tank.blp", MultiBot.tips.attack.tank)
 tButton.doRight = function(pButton)
-	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "@tank do attack my target")
+	MultiBot.SelectToGroupButtonWithTarget(pButton.parent.parent, "Attack", pButton.texture, "坦克打他")
 end
 tButton.doLeft = function(pButton)
-	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("@tank do attack my target") end
+	if(MultiBot.isTarget()) then MultiBot.ActionToGroup("坦克打他") end
 end
 
 -- MODE --
