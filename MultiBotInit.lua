@@ -238,42 +238,42 @@ tFormat:Hide()
 
 tFormat.addButton("Arrow", 0, 0, "Interface\\AddOns\\MultiBot\\Icons\\formation_arrow.blp", MultiBot.tips.format.arrow)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation arrow")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "箭头阵型")
 end
 
 tFormat.addButton("Queue", 0, 30, "Interface\\AddOns\\MultiBot\\Icons\\formation_queue.blp", MultiBot.tips.format.queue)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation queue")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "队列阵型")
 end
 
 tFormat.addButton("Near", 0, 60, "Interface\\AddOns\\MultiBot\\Icons\\formation_near.blp", MultiBot.tips.format.near)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation near")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "近距离阵型")
 end
 
 tFormat.addButton("Melee", 0, 90, "Interface\\AddOns\\MultiBot\\Icons\\formation_melee.blp", MultiBot.tips.format.melee)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation melee")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "近战阵型")
 end
 
 tFormat.addButton("Line", 0, 120, "Interface\\AddOns\\MultiBot\\Icons\\formation_line.blp", MultiBot.tips.format.line)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation line")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "直线阵型")
 end
 
 tFormat.addButton("Circle", 0, 150, "Interface\\AddOns\\MultiBot\\Icons\\formation_circle.blp", MultiBot.tips.format.circle)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation circle")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "圆形阵型")
 end
 
 tFormat.addButton("Chaos", 0, 180, "Interface\\AddOns\\MultiBot\\Icons\\formation_chaos.blp", MultiBot.tips.format.chaos)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation chaos")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "混乱阵型")
 end
 
 tFormat.addButton("Shield", 0, 210, "Interface\\AddOns\\MultiBot\\Icons\\formation_shield.blp", MultiBot.tips.format.shield)
 .doLeft = function(pButton)
-	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "formation shield")
+	MultiBot.SelectToGroup(pButton.parent.parent, "Format", pButton.texture, "盾牌阵型")
 end
 
 -- BEASTMASTER --
