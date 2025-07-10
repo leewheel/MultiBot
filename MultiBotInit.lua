@@ -83,9 +83,9 @@ tButton.doRight = function(pButton)
 end
 tButton.doLeft = function(pButton)
 	if(MultiBot.OnOffSwitch(pButton)) then
-		MultiBot.ActionToGroup("co +passive,?")
+		MultiBot.ActionToGroup("被动")
 	else
-		MultiBot.ActionToGroup("co -passive,?")
+		MultiBot.ActionToGroup("解除被动")
 	end
 end
 
@@ -97,9 +97,9 @@ tMode.addButton("Passive", 0, 0, "Interface\\AddOns\\MultiBot\\Icons\\mode_passi
 	if(MultiBot.SelectToGroup(pButton.parent.parent, "Mode", pButton.texture, "co +passive,?")) then
 		pButton.parent.parent.buttons["Mode"].setEnable().doLeft = function(pButton)
 			if(MultiBot.OnOffSwitch(pButton)) then
-				MultiBot.ActionToGroup("co +passive,?")
+				MultiBot.ActionToGroup("被动")
 			else
-				MultiBot.ActionToGroup("co -passive,?")
+				MultiBot.ActionToGroup("解除被动")
 			end
 		end
 	end
@@ -110,9 +110,9 @@ tMode.addButton("Grind", 0, 30, "Interface\\AddOns\\MultiBot\\Icons\\mode_grind.
 	if(MultiBot.SelectToGroup(pButton.parent.parent, "Mode", pButton.texture, "grind")) then
 		pButton.parent.parent.buttons["Mode"].setEnable().doLeft = function(pButton)
 			if(MultiBot.OnOffSwitch(pButton)) then
-				MultiBot.ActionToGroup("grind")
+				MultiBot.ActionToGroup("刷怪")
 			else
-				MultiBot.ActionToGroup("follow")
+				MultiBot.ActionToGroup("跟随")
 			end
 		end
 	end
@@ -122,7 +122,7 @@ end
 
 tLeft.addButton("Stay", -68, 0, "Interface\\AddOns\\MultiBot\\Icons\\command_follow.blp", MultiBot.tips.stallow.stay)
 .doLeft = function(pButton)
-	if(MultiBot.ActionToGroup("stay")) then
+	if(MultiBot.ActionToGroup("等着")) then
 		pButton.parent.buttons["Follow"].doShow()
 		pButton.parent.buttons["ExpandFollow"].setDisable()
 		pButton.parent.buttons["ExpandStay"].setEnable()
@@ -132,7 +132,7 @@ end
 
 tLeft.addButton("Follow", -68, 0, "Interface\\AddOns\\MultiBot\\Icons\\command_stay.blp", MultiBot.tips.stallow.follow).doHide()
 .doLeft = function(pButton)
-	if(MultiBot.ActionToGroup("follow")) then
+	if(MultiBot.ActionToGroup("跟随")) then
 		pButton.parent.buttons["Stay"].doShow()
 		pButton.parent.buttons["ExpandFollow"].setEnable()
 		pButton.parent.buttons["ExpandStay"].setDisable()
@@ -142,14 +142,14 @@ end
 
 tLeft.addButton("ExpandStay", -68, 0, "Interface\\AddOns\\MultiBot\\Icons\\command_stay.blp", MultiBot.tips.expand.stay).doHide().setDisable()
 .doLeft = function(pButton)
-	MultiBot.ActionToGroup("stay")
+	MultiBot.ActionToGroup("别动")
 	pButton.parent.buttons["ExpandFollow"].setDisable()
 	pButton.setEnable()
 end
 
 tLeft.addButton("ExpandFollow", -102, 0, "Interface\\AddOns\\MultiBot\\Icons\\command_follow.blp", MultiBot.tips.expand.follow).doHide()
 .doLeft = function(pButton)
-	MultiBot.ActionToGroup("follow")
+	MultiBot.ActionToGroup("跟随")
 	pButton.parent.buttons["ExpandStay"].setDisable()
 	pButton.setEnable()
 end
@@ -161,7 +161,7 @@ tButton.doRight = function(pButton)
 	MultiBot.ShowHideSwitch(pButton.parent.frames["Flee"])
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("flee")
+	MultiBot.ActionToGroup("快跑")
 end
 
 local tFlee = tLeft.addFrame("Flee", -36, 34)
@@ -172,7 +172,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("flee")
+	MultiBot.ActionToGroup("逃命啊")
 end
 
 local tButton = tFlee.addButton("Ranged", 0, 30, "Interface\\AddOns\\MultiBot\\Icons\\flee_ranged.blp", MultiBot.tips.flee.ranged)
@@ -180,7 +180,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "@ranged flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("@ranged flee")
+	MultiBot.ActionToGroup("远程撤退")
 end
 
 local tButton = tFlee.addButton("Melee", 0, 60, "Interface\\AddOns\\MultiBot\\Icons\\flee_melee.blp", MultiBot.tips.flee.melee)
@@ -188,7 +188,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "@melee flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("@melee flee")
+	MultiBot.ActionToGroup("近战快跑")
 end
 
 local tButton = tFlee.addButton("Healer", 0, 90, "Interface\\AddOns\\MultiBot\\Icons\\flee_healer.blp", MultiBot.tips.flee.healer)
@@ -196,7 +196,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "@healer flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("@healer flee")
+	MultiBot.ActionToGroup("治疗快跑")
 end
 
 local tButton = tFlee.addButton("Dps", 0, 120, "Interface\\AddOns\\MultiBot\\Icons\\flee_dps.blp", MultiBot.tips.flee.dps)
@@ -204,7 +204,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "@dps flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("@dps flee")
+	MultiBot.ActionToGroup("DPS撤退")
 end
 
 local tButton = tFlee.addButton("Tank", 0, 150, "Interface\\AddOns\\MultiBot\\Icons\\flee_tank.blp", MultiBot.tips.flee.tank)
@@ -212,7 +212,7 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToGroupButton(pButton.parent.parent, "Flee", pButton.texture, "@tank flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToGroup("@tank flee")
+	MultiBot.ActionToGroup("坦克撤退")
 end
 
 local tButton = tFlee.addButton("Target", 0, 180, "Interface\\AddOns\\MultiBot\\Icons\\flee_target.blp", MultiBot.tips.flee.target)
@@ -220,14 +220,14 @@ tButton.doRight = function(pButton)
 	MultiBot.SelectToTargetButton(pButton.parent.parent, "Flee", pButton.texture, "flee")
 end
 tButton.doLeft = function(pButton)
-	MultiBot.ActionToTarget("flee")
+	MultiBot.ActionToTarget("撤退")
 end
 
 -- FORMATION --
 
 local tButton = tLeft.addButton("Format", -0, 0, "Interface\\AddOns\\MultiBot\\Icons\\formation_near.blp", MultiBot.tips.format.master)
 tButton.doRight = function(pButton)
-	MultiBot.ActionToGroup("formation")
+	MultiBot.ActionToGroup("阵型")
 end
 tButton.doLeft = function(pButton)
 	MultiBot.ShowHideSwitch(pButton.parent.frames["Format"])
