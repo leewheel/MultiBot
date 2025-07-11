@@ -324,52 +324,52 @@ tCreator:Hide()
 
 tCreator.addButton("Warrior", 0, 0, "Interface\\AddOns\\MultiBot\\Icons\\addclass_warrior.blp", MultiBot.tips.creator.warrior)
 .doLeft = function(pButton)
-	SendChatMessage("添加战士职业", "SAY")
+	SendChatMessage(".添加战士职业", "SAY")
 end
 
 tCreator.addButton("Warlock", 0, 30, "Interface\\AddOns\\MultiBot\\Icons\\addclass_warlock.blp", MultiBot.tips.creator.warlock)
 .doLeft = function(pButton)
-	SendChatMessage("添加术士职业", "SAY")
+	SendChatMessage(".添加术士职业", "SAY")
 end
 
 tCreator.addButton("Shaman", 0, 60, "Interface\\AddOns\\MultiBot\\Icons\\addclass_shaman.blp", MultiBot.tips.creator.shaman)
 .doLeft = function(pButton)
-	SendChatMessage("添加萨满职业", "SAY")
+	SendChatMessage(".添加萨满职业", "SAY")
 end
 
 tCreator.addButton("Rogue", 0, 90, "Interface\\AddOns\\MultiBot\\Icons\\addclass_rogue.blp", MultiBot.tips.creator.rogue)
 .doLeft = function(pButton)
-	SendChatMessage("添加盗贼职业", "SAY")
+	SendChatMessage(".添加盗贼职业", "SAY")
 end
 
 tCreator.addButton("Priest", 0, 120, "Interface\\AddOns\\MultiBot\\Icons\\addclass_priest.blp", MultiBot.tips.creator.priest)
 .doLeft = function(pButton)
-	SendChatMessage("添加牧师职业", "SAY")
+	SendChatMessage(".添加牧师职业", "SAY")
 end
 
 tCreator.addButton("Paladin", 0, 150, "Interface\\AddOns\\MultiBot\\Icons\\addclass_paladin.blp", MultiBot.tips.creator.paladin)
 .doLeft = function(pButton)
-	SendChatMessage("添加圣骑士职业", "SAY")
+	SendChatMessage(".添加圣骑士职业", "SAY")
 end
 
 tCreator.addButton("Mage", 0, 180, "Interface\\AddOns\\MultiBot\\Icons\\addclass_mage.blp", MultiBot.tips.creator.mage)
 .doLeft = function(pButton)
-	SendChatMessage("添加法师职业", "SAY")
+	SendChatMessage(".添加法师职业", "SAY")
 end
 
 tCreator.addButton("Hunter", 0, 210, "Interface\\AddOns\\MultiBot\\Icons\\addclass_hunter.blp", MultiBot.tips.creator.hunter)
 .doLeft = function(pButton)
-	SendChatMessage("添加猎人职业", "SAY")
+	SendChatMessage(".添加猎人职业", "SAY")
 end
 
 tCreator.addButton("Druid", 0, 240, "Interface\\AddOns\\MultiBot\\Icons\\addclass_druid.blp", MultiBot.tips.creator.druid)
 .doLeft = function(pButton)
-	SendChatMessage("添加德鲁伊职业", "SAY")
+	SendChatMessage(".添加德鲁伊职业", "SAY")
 end
 
 tCreator.addButton("DeathKnight", 0, 270, "Interface\\AddOns\\MultiBot\\Icons\\addclass_deathknight.blp", MultiBot.tips.creator.deathknight)
 .doLeft = function(pButton)
-	SendChatMessage("添加死亡骑士职业", "SAY")
+	SendChatMessage(".添加死亡骑士职业", "SAY")
 end
 
 tCreator.addButton("Inspect", 0, 300, "Interface\\AddOns\\MultiBot\\Icons\\filter_none.blp", MultiBot.tips.creator.inspect)
