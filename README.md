@@ -1,11 +1,34 @@
 # MultiBot
-User interface for AzerothCore-Module "Playerbot" by Liyunfan1223.<br>
+User interface for AzerothCore-Module "Playerbots" by Playerbots team https://github.com/mod-playerbots/mod-playerbots.<br>
 Tested with American and German 3.3.5 Wotlk-Client.
 # Installation
 Simply place the files in a folder called "MultiBot" in your World of Warcraft AddOns directory.<br>
 Example: "C:\WorldOfWarcraft\Interface\AddOns\MultiBot"
 # Use
-Start World of Warcraft and enter "/multibot" or "/mbot" or "/mb" in the chat.
+Start World of Warcraft and enter "/multibot" or "/mbot" or "/mb" in the chat, or use the minimap button.
+
+---
+
+## ⚠️ Notice — About This Fork
+
+This is a **temporary fork** of the original [MultiBot addon by Macx-Lio](https://github.com/Macx-Lio/MultiBot).
+
+The reason for this fork is that I submitted several pull requests to the original repository, but since the creator, **Macx-Lio**, is currently unavailable, those changes could not be merged.
+
+To allow the community to benefit from the additional features and improvements I have implemented, I’ve published this fork **as a temporary solution**.
+
+As soon as the original author returns and is able to review and merge the contributions, this repository will be removed in favor of the official version.
+
+> **All credit for the original addon goes to Macx-Lio.** I do not claim ownership of this project — I’m simply maintaining a working version until development resumes on the main repository.
+
+Thank you for understanding.
+
+---
+
+Screens:
+
+<img width="855" height="716" alt="main" src="https://github.com/user-attachments/assets/5d5f08ab-58a6-4d59-a911-d40470913514" />
+
 # Current Status
 <table>
   <tr>
@@ -292,7 +315,6 @@ Start World of Warcraft and enter "/multibot" or "/mbot" or "/mb" in the chat.
 </table>
 
 # Comming soon
-Currently i am working on the Group- and Raid-Controls.
+Share your ideas
 
 # Currently not supported
-QUEST
